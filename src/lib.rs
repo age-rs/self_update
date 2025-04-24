@@ -142,14 +142,12 @@ pub use tempfile::TempDir;
 #[cfg(feature = "compression-flate2")]
 use either::Either;
 use indicatif::{ProgressBar, ProgressStyle};
+use log::debug;
 use reqwest::header;
 use std::cmp::min;
 use std::fs;
 use std::io;
 use std::path;
-
-#[macro_use]
-extern crate log;
 
 #[macro_use]
 mod macros;
