@@ -128,7 +128,7 @@ pub trait ReleaseUpdate {
     /// Authorisation token for communicating with backend
     fn auth_token(&self) -> Option<String>;
 
-    /// ed25519ph verifying keys to validate a download's authenticy
+    /// ed25519ph verifying keys to validate a download's authenticity
     #[cfg(feature = "signatures")]
     fn verifying_keys(&self) -> &[[u8; zipsign_api::PUBLIC_KEY_LENGTH]] {
         &[]

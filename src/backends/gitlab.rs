@@ -396,7 +396,7 @@ impl UpdateBuilder {
         self
     }
 
-    /// Specify a slice of ed25519ph verifying keys to validate a download's authenticy
+    /// Specify a slice of ed25519ph verifying keys to validate a download's authenticity
     ///
     /// If the feature is activated AND at least one key was provided, a download is verifying.
     /// At least one key has to match.
