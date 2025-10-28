@@ -10,7 +10,7 @@ readme = "README.md"
 authors = ["James Kominick <james@kominick.com>"]
 exclude = ["/ci/*", ".travis.yml", "appveyor.yml"]
 edition = "2018"
-rust-version = "1.82"
+rust-version = "1.85"
 
 [dependencies]
 serde_json = "1"
