@@ -28,7 +28,11 @@ pub enum Error {
     /// A wrapper over a `serde_json::Error`.
     Json(serde_json::Error),
     /// A wrapper over a `reqwest::Error`.
+    #[cfg(feature = "reqwest")]
     Reqwest(reqwest::Error),
+    /// A wrapper over a `ureq::Error`.
+    #[cfg(feature = "ureq")]
+    Ureq(ureq::Error),
     /// A wrapper over a `semver::Error`.
     SemVer(semver::Error),
     /// Used when the `archive-zip` feature is not enabled.
@@ -55,7 +59,10 @@ impl std::fmt::Display for Error {
             Config(ref s) => write!(f, "ConfigError: {}", s),
             Io(ref e) => write!(f, "IoError: {}", e),
             Json(ref e) => write!(f, "JsonError: {}", e),
+            #[cfg(feature = "reqwest")]
             Reqwest(ref e) => write!(f, "ReqwestError: {}", e),
+            #[cfg(feature = "ureq")]
+            Ureq(ref e) => write!(f, "UreqError: {}", e),
             SemVer(ref e) => write!(f, "SemVerError: {}", e),
             #[cfg(feature = "archive-zip")]
             Zip(ref e) => write!(f, "ZipError: {}", e),
@@ -81,7 +88,10 @@ impl std::error::Error for Error {
         Some(match *self {
             Error::Io(ref e) => e,
             Error::Json(ref e) => e,
+            #[cfg(feature = "reqwest")]
             Error::Reqwest(ref e) => e,
+            #[cfg(feature = "ureq")]
+            Error::Ureq(ref e) => e,
             Error::SemVer(ref e) => e,
             #[cfg(feature = "signatures")]
             Error::Signature(ref e) => e,
@@ -102,9 +112,17 @@ impl From<serde_json::Error> for Error {
     }
 }
 
+#[cfg(feature = "reqwest")]
 impl From<reqwest::Error> for Error {
     fn from(e: reqwest::Error) -> Error {
         Error::Reqwest(e)
+    }
+}
+
+#[cfg(feature = "ureq")]
+impl From<ureq::Error> for Error {
+    fn from(e: ureq::Error) -> Error {
+        Error::Ureq(e)
     }
 }
 
