@@ -6,7 +6,7 @@ use super::{HeaderMap, HttpResponse};
 use crate::{Error, Result};
 
 pub fn get(url: &str, headers: HeaderMap) -> Result<impl HttpResponse> {
-    let mut req = ureq::get(url).header("user-agent", "rust-reqwest/self-update");
+    let mut req = ureq::get(url);
 
     for (key, value) in headers.into_iter() {
         if let Some(key) = key {
