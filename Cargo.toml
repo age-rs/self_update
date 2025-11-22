@@ -37,7 +37,7 @@ http = "1"
 
 reqwest = { version = "0.12", default-features = false, optional = true, features = ["blocking", "json", "http2"] }
 
-ureq = { version = "3.0.6", optional = true, default-features = false, features = ["gzip", "json", "socks-proxy"]}
+ureq = { version = "3.0.6", optional = true, default-features = false, features = ["gzip", "json", "socks-proxy", "charset"]}
 
 [features]
 default = ["reqwest", "default-tls"]

@@ -1,12 +1,25 @@
 #![cfg(feature = "ureq")]
 
-use ureq::{http::Response, Body};
+use ureq::tls::TlsProvider;
+use ureq::{http::Response, Agent, Body};
 
 use super::{HeaderMap, HttpResponse};
 use crate::{Error, Result};
 
 pub fn get(url: &str, headers: HeaderMap) -> Result<impl HttpResponse> {
-    let mut req = ureq::get(url);
+    #[allow(unused_mut)]
+    let mut provider = TlsProvider::NativeTls;
+
+    #[cfg(feature = "rustls")]
+    {
+        provider = TlsProvider::Rustls;
+    }
+
+    let config = Agent::config_builder()
+        .tls_config(ureq::tls::TlsConfig::builder().provider(provider).build())
+        .build();
+    let agent = Agent::new_with_config(config);
+    let mut req = agent.get(url);
 
     for (key, value) in headers.into_iter() {
         if let Some(key) = key {
