@@ -1,10 +1,10 @@
 use regex::Regex;
-use reqwest::{self, header};
 use std::borrow::Cow;
 use std::env::consts::{ARCH, OS};
 use std::fs;
 use std::path::PathBuf;
 
+use crate::http_client::{self, header};
 use crate::{confirm, errors::*, version, Download, Extract, Status};
 
 /// Release asset information
@@ -128,14 +128,14 @@ pub trait ReleaseUpdate {
     /// Authorisation token for communicating with backend
     fn auth_token(&self) -> Option<String>;
 
-    /// ed25519ph verifying keys to validate a download's authenticy
+    /// ed25519ph verifying keys to validate a download's authenticity
     #[cfg(feature = "signatures")]
     fn verifying_keys(&self) -> &[[u8; zipsign_api::PUBLIC_KEY_LENGTH]] {
         &[]
     }
 
     /// Construct a header with an authorisation entry if an auth token is provided
-    fn api_headers(&self, auth_token: &Option<String>) -> Result<header::HeaderMap> {
+    fn api_headers(&self, auth_token: &Option<String>) -> Result<http_client::HeaderMap> {
         let mut headers = header::HeaderMap::new();
 
         if auth_token.is_some() {
