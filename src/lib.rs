@@ -142,7 +142,6 @@ pub use tempfile::TempDir;
 use either::Either;
 use indicatif::{ProgressBar, ProgressStyle};
 use log::debug;
-use reqwest::header;
 use std::cmp::min;
 use std::fs;
 use std::io;
