@@ -6,9 +6,7 @@ Example updating an executable to the latest version released via GitHub
 Include `signatures` in the features list to enable zipsign verification
 */
 
-// For the `cargo_crate_version!` macro
-#[macro_use]
-extern crate self_update;
+use self_update::cargo_crate_version;
 
 fn run() -> Result<(), Box<dyn ::std::error::Error>> {
     let mut rel_builder = self_update::backends::github::ReleaseList::configure();

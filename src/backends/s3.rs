@@ -9,6 +9,7 @@ use crate::{
     version::bump_is_greater,
     DEFAULT_PROGRESS_CHARS, DEFAULT_PROGRESS_TEMPLATE,
 };
+use log::debug;
 use quick_xml::events::Event;
 use quick_xml::Reader;
 use regex::Regex;
