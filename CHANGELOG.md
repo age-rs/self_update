@@ -9,7 +9,7 @@
 ## [0.42.0]
 ### Added
 - Improved release search/lookup capability to support filtering assets by identifier
-- Improved version specifications to support prelease tags and parallel supported versions
+- Improved version specifications to support prerelease tags and parallel supported versions
 ### Changed
 - Update reqwest features to allow http2 negotiation
 - Update quick-xml (0.37) and zipsign (0.1)
@@ -151,7 +151,7 @@
 ### Added
 - Add GCS support to S3 backend
 ### Changed
-- Fixed docs refering to github in s3 backend
+- Fixed docs referring to github in s3 backend
 ### Removed
 
 ## [0.20.0]
